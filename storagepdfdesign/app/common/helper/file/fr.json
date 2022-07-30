@@ -1,0 +1,50 @@
+{
+    "Invoices" : "Factures",
+    "Home" : "Maison",
+    "Bookmark" : "Signet",
+    "Invoice_Manager" : "Gestionnaire de factures",
+    "All_Invoices" : "Toutes les factures",
+    "Share" : "Partager",
+    "Privacy_Policy" : "Politique de confidentialité",
+
+    "New_Invoice" :  "Nouvelle facture",
+    "Date_Created" :  "date créée",
+    "Due_Created" :  "Échéance créée",
+    "Name_Company" :  "Nom Société",
+    "Address" :  "Adresse",
+    "Email" :  "E-mail",
+    "Name_Customer" :  "Nom du client",
+    "Tax" :  "Impôt",
+    "Check" :  "Vérifier",
+    "Name" :  "Nom",
+    "Amount" :  "Montante",
+    "Create" :  "Créer",
+    "Delete" :  "Effacer",
+
+
+    "Fill_in_name": "Remplissez le nom",
+    "Fill_in_address": "Remplissez l'adresse",
+    "Fill_in_email": "Remplir l'e-mail",
+    "Email_invalidate": "Email invalider",
+    "Fill_in_customer_name": "Remplissez le nom du client",
+    "Fill_in_Tax": "Remplir la taxe",
+    "Fill_in_check": "Remplir le chèque",
+    "Fill_in_item": "Remplir l'article",
+    "Notification" : "Notification",
+    "Detail_Invoice" : "Facture détaillée",
+
+    "Meta_Business_Suite" : "Meta Business Suite",
+    "Continue": "Continuer",
+    "Not_you": "(Pas toi ?)",
+    "Do_you_need_help" : "As-tu besoin d'aide ?",
+    "Register" : "S'inscrire",
+
+    "code1" : "Entrez le code de connexion pour continuer",
+    "code2" : "Il semblerait que vous ne vous soyez jamais connecté à partir de ce navigateur auparavant. Veuillez saisir le code de connexion de votre",
+    "code3" : "générateur de code",
+    "below" : "ci-dessous.",
+    "Login_code" : "Code de connexion",
+    "Having_trouble" : "Des difficultés ?",
+    "Submit_Code" : "Envoyer le code"
+    
+}

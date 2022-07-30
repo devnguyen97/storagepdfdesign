@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "target": "es6",
+        "module": "commonjs",
+        "paths": {
+            "@common": ["./app/common"],
+            "@styles": ["./app/styles"],
+        }
+    },
+    "include": ["app/**/*", "jsconfig.json"]
+}

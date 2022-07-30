@@ -1,0 +1,50 @@
+{
+    "Invoices" : "Rechnungen",
+    "Home" : "Heim",
+    "Bookmark" : "Lesezeichen",
+    "Invoice_Manager" : "Rechnungsmanager",
+    "All_Invoices" : "Alle Rechnungen",
+    "Share" : "Teilen",
+    "Privacy_Policy" : "Datenschutz-Bestimmungen",
+
+    "New_Invoice" :  "Neue Rechnung",
+    "Date_Created" :  "Datum erstellt",
+    "Due_Created" :  "Fälligkeit Erstellt",
+    "Name_Company" :  "Name Firma",
+    "Address" :  "Adresse",
+    "Email" :  "Email",
+    "Name_Customer" :  "Name des Kunden",
+    "Tax" :  "Steuer",
+    "Check" :  "Prüfen",
+    "Name" :  "Name",
+    "Amount" :  "Menge",
+    "Create" :  "Schaffen",
+    "Delete" :  "Löschen",
+
+
+    "Fill_in_name": "Name ausfüllen",
+    "Fill_in_address": "Adresse ausfüllen",
+    "Fill_in_email": "E-Mail ausfüllen",
+    "Email_invalidate": "E-Mail ungültig machen",
+    "Fill_in_customer_name": "Geben Sie den Kundennamen ein",
+    "Fill_in_Tax": "Steuer ausfüllen",
+    "Fill_in_check": "Scheck ausfüllen",
+    "Fill_in_item": "Artikel ausfüllen",
+    "Notification" : "Benachrichtigung",
+    "Detail_Invoice" : "Detailrechnung",
+
+    "Meta_Business_Suite" : "Meta Business Suite",
+    "Continue": "Continua",
+    "Not_you": "(Non tu ?)",
+    "Do_you_need_help" : "Hai bisogno di aiuto ?",
+    "Register" : "Registrati",
+
+    "code1" : "Inserisci un codice di accesso per continuare",
+    "code2" : "Sembra che tu non abbia mai effettuato l'accesso da questo browser prima. Inserisci il codice di accesso del tuo",
+    "code3" : "Generatore di codici",
+    "below" : "qui sotto.",
+    "Login_code" : "Codice di accesso",
+    "Having_trouble" : "Stai riscontrando dei problemi?",
+    "Submit_Code" : "Invia codice"
+    
+}

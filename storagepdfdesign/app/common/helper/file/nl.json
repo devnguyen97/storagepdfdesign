@@ -1,0 +1,50 @@
+{
+    "Invoices" : "Fakture",
+    "Home" : "Tuis",
+    "Bookmark" : "Boekmerk",
+    "Invoice_Manager" : "Faktuurbestuurder",
+    "All_Invoices" : "Alle fakture",
+    "Share" : "Deel",
+    "Privacy_Policy" : "Privaatheidsbeleid",
+
+    "New_Invoice" :  "Nuwe faktuur",
+    "Date_Created" :  "Datum geskep",
+    "Due_Created" :  "Due Geskep",
+    "Name_Company" :  "Noem Maatskappy",
+    "Address" :  "Adres",
+    "Email" :  "E-pos",
+    "Name_Customer" :  "Noem kliënt",
+    "Tax" :  "Belasting",
+    "Check" :  "Tjek",
+    "Name" :  "Naam",
+    "Amount" :  "Bedrag",
+    "Create" :  "Skep",
+    "Delete" :  "Vee uit",
+
+
+    "Fill_in_name": "Vul naam in",
+    "Fill_in_address": "Vul adres in",
+    "Fill_in_email": "Vul e-pos in",
+    "Email_invalidate": "E-pos ongeldig",
+    "Fill_in_customer_name": "Vul die kliënt se naam in",
+    "Fill_in_Tax": "Vul Belasting in",
+    "Fill_in_check": "Vul tjek in",
+    "Fill_in_item": "Vul item in",
+    "Notification" : "Kennisgewing",
+    "Detail_Invoice" : "Besonderhede faktuur",
+
+    "Meta_Business_Suite" : "Meta Business Suite",
+    "Continue": "Doorgaan",
+    "Not_you": "(Jij niet ?)",
+    "Do_you_need_help" : "Heb je hulp nodig ?",
+    "Register" : "Register",
+
+    "code1" : "Aanmeldcode invoeren om door te gaan",
+    "code2" : "Het lijkt erop dat je je nog niet eerder via deze browser hebt aangemeld. Voer de aanmeldcode van je",
+    "code3" : "codegenerator",
+    "below" : "hieronder in.",
+    "Login_code" : "Inlogcode",
+    "Having_trouble" : "Problemen?",
+    "Submit_Code" : "Code verzenden"
+    
+}

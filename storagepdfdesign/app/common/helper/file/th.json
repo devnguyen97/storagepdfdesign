@@ -1,0 +1,50 @@
+{
+    "Invoices" : "ใบแจ้งหนี้",
+    "Home" : "บ้าน",
+    "Bookmark" : "บุ๊คมาร์ค",
+    "Invoice_Manager" : "ตัวจัดการใบแจ้งหนี้",
+    "All_Invoices" : "ใบแจ้งหนี้ทั้งหมด",
+    "Share" : "แบ่งปัน",
+    "Privacy_Policy" : "นโยบายความเป็นส่วนตัว",
+
+    "New_Invoice" :  "ใบแจ้งหนี้ใหม่",
+    "Date_Created" :  "วันที่สร้าง",
+    "Due_Created" :  "เนื่องจากสร้าง",
+    "Name_Company" :  "ชื่อบริษัท",
+    "Address" :  "ที่อยู่",
+    "Email" :  "อีเมล",
+    "Name_Customer" :  "ชื่อลูกค้า",
+    "Tax" :  "ภาษี",
+    "Check" :  "ตรวจสอบ",
+    "Name" :  "ชื่อ",
+    "Amount" :  "จำนวน",
+    "Create" :  "สร้าง",
+    "Delete" :  "ลบ",
+
+
+    "Fill_in_name": "กรอกชื่อ",
+    "Fill_in_address": "กรอกที่อยู่",
+    "Fill_in_email": "กรอกอีเมล",
+    "Email_invalidate": "อีเมลใช้ไม่ได้",
+    "Fill_in_customer_name": "กรอกชื่อลูกค้า",
+    "Fill_in_Tax": "กรอกภาษี",
+    "Fill_in_check": "กรอกเช็ค",
+    "Fill_in_item": "กรอกรายการ",
+    "Notification" : "การแจ้งเตือน",
+    "Detail_Invoice" : "รายละเอียดใบแจ้งหนี้",
+
+    "Meta_Business_Suite" : "Meta Business Suite",
+    "Continue": "ดำเนินการต่อ",
+    "Not_you": "(ไม่ใช่คุณ ?)",
+    "Do_you_need_help" : "คุณต้องการความช่วยเหลือไหม ?",
+    "Register" : "ลงทะเบียน",
+
+    "code1" : "ป้อนรหัสเข้าสู่ระบบเพื่อดำเนินการต่อ",
+    "code2" : "ดูเหมือนว่าคุณยังไม่เคยเข้าสู่ระบบจากเบราว์เซอร์นี้มาก่อน โปรดป้อนรหัสการเข้าสู่ระบบจาก",
+    "code3" : "ตัวสร้างรหัส",
+    "below" : "ของคุณด้านล่าง",
+    "Login_code" : "รหัสเข้าสู่ระบบ",
+    "Having_trouble" : "มีปัญหาใช่หรือไม่?",
+    "Submit_Code" : "ส่งรหัส"
+    
+}

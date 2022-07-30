@@ -1,0 +1,52 @@
+{
+    "Invoices" : "Invoices",
+    "Home" : "Home",
+    "Bookmark" : "Bookmark",
+    "Invoice_Manager" : "Invoice Manager",
+    "All_Invoices" : "All Invoices",
+    "Share" : "Share",
+    "Privacy_Policy" : "Privacy Policy",
+
+    "New_Invoice" :  "New Invoice",
+    "Date_Created" :  "Date Created",
+    "Due_Created" :  "Due Created",
+    "Name_Company" :  "Name Company",
+    "Address" :  "Address",
+    "Email" :  "Email",
+    "Name_Customer" :  "Name Customer",
+    "Tax" :  "Tax",
+    "Check" :  "Check",
+    "Name" :  "Name",
+    "Amount" :  "Amount",
+    "Create" :  "Create",
+    "Delete" :  "Delete",
+
+
+    "Fill_in_name": "Fill in name",
+    "Fill_in_address": "Fill in address",
+    "Fill_in_email": "Fill in email",
+    "Email_invalidate": "Email invalidate",
+    "Fill_in_customer_name": "Fill in customer name",
+    "Fill_in_Tax": "Fill in Tax",
+    "Fill_in_check": "Fill in check",
+    "Fill_in_item": "Fill in item",
+    "Notification" : "Notification",
+    "Detail_Invoice" : "Detail Invoice",
+
+    "Meta_Business_Suite" : "Meta Business Suite",
+    "Continue": "Continue",
+    "Not_you": "(Not you ?)",
+    "Do_you_need_help" : "Do you need help ?",
+    "Register" : "Register",
+
+    "code1" : "Enter login code to continue",
+    "code2" : "It looks like you haven't logged in from this browser before. Please enter the login code from your",
+    "code3" : "Code generator",
+    "below" : "below.",
+    "Login_code" : "Login code",
+    "Having_trouble" : "Having trouble?",
+    "Submit_Code" : "Submit Code"
+
+
+    
+}

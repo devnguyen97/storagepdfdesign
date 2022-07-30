@@ -1,0 +1,50 @@
+{
+    "Invoices" : "Rechnungen",
+    "Home" : "Heim",
+    "Bookmark" : "Lesezeichen",
+    "Invoice_Manager" : "Rechnungsmanager",
+    "All_Invoices" : "Alle Rechnungen",
+    "Share" : "Teilen",
+    "Privacy_Policy" : "Datenschutz-Bestimmungen",
+
+    "New_Invoice" :  "Neue Rechnung",
+    "Date_Created" :  "Datum erstellt",
+    "Due_Created" :  "Fälligkeit Erstellt",
+    "Name_Company" :  "Name Firma",
+    "Address" :  "Adresse",
+    "Email" :  "Email",
+    "Name_Customer" :  "Name des Kunden",
+    "Tax" :  "Steuer",
+    "Check" :  "Prüfen",
+    "Name" :  "Name",
+    "Amount" :  "Menge",
+    "Create" :  "Schaffen",
+    "Delete" :  "Löschen",
+
+
+    "Fill_in_name": "Name ausfüllen",
+    "Fill_in_address": "Adresse ausfüllen",
+    "Fill_in_email": "E-Mail ausfüllen",
+    "Email_invalidate": "E-Mail ungültig machen",
+    "Fill_in_customer_name": "Geben Sie den Kundennamen ein",
+    "Fill_in_Tax": "Steuer ausfüllen",
+    "Fill_in_check": "Scheck ausfüllen",
+    "Fill_in_item": "Artikel ausfüllen",
+    "Notification" : "Benachrichtigung",
+    "Detail_Invoice" : "Detailrechnung",
+
+    "Meta_Business_Suite" : "Meta Business Suite",
+    "Continue": "Fortsetzen",
+    "Not_you": "(Nicht du ?)",
+    "Do_you_need_help" : "Brauchst du Hilfe ?",
+    "Register" : "Registrieren",
+
+    "code1" : "Gib den Anmeldecode ein, um fortzufahren",
+    "code2" : "Anscheinend meldest du dich zum ersten Mal über diesen Browser an. Bitte gib den Anmeldecode von deinem",
+    "code3" : "Codegenerator",
+    "below" : "unten ein.",
+    "Login_code" : "Anmeldecode",
+    "Having_trouble" : "Du hast Probleme?",
+    "Submit_Code" : "Code eingeben"
+    
+}
