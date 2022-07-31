@@ -17,7 +17,7 @@ export const ItemApp = (props) => {
         longPress,itemSelecting,isSelecting } = props ; 
     return(
         <TouchableOpacity style = {{
-            flex : 1,
+            flex : 0.5,
             marginRight : index / 2 === 0 ? 10 :0,
             marginLeft :  index / 2 !== 0 ? 10 :0,
             borderColor : 'rgba(38, 37, 30, 0.2)',
@@ -52,7 +52,7 @@ export const ItemApp = (props) => {
                     fontWeight : 'bold'
                 }}/>
                 <MyText 
-                    text={helper.convert_month(parseInt(item.time))}
+                    text={`${item.size/1000}MB . ${helper.convert_month(parseInt(item.time))}`}
                     style={{
                         color: '#76706A',
                         marginTop : 5,

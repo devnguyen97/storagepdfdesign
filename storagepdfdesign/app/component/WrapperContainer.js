@@ -25,7 +25,7 @@ class WrapperContainer extends Component {
                     <View style = {{
                         flex : 1,
                         flexDirection : 'row',
-                        paddingHorizontal : 20,
+                        paddingHorizontal : 10,
                     }}>
                         <View style = {{
                             flex : 1,
@@ -56,14 +56,14 @@ class WrapperContainer extends Component {
 
                 </ImageBackground>
                 <View style={{
-                        width : "90%",
+                        width : "95%",
                         height : 50,
                         borderRadius : 50,
                         alignSelf : 'center',
                         paddingHorizontal : 10,
                         backgroundColor : '#F3F2F2',
                         flexDirection : 'row'
-                    }}>
+                }}>
                 <Image style = {{
                     width : 25,
                     height : 25,
@@ -71,8 +71,7 @@ class WrapperContainer extends Component {
                 }}
                 source = {{
                     uri : 'ic_search'
-                }}
-                />
+                }}/>
                 <TextInput
                     value={valueInput}
                     onChangeText={setValueInput}

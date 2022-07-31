@@ -1,5 +1,5 @@
 import { helper, storage } from "@common";
-import { MyText, WrapperContainer,ModalViewPdf,ModalSelect,ModalEdit,ModalImage,ModalDelete } from "@component";
+import { MyText, WrapperContainer,ModalViewPdf,ModalSelect,ModalEdit,ModalImage,ModalDelete,ModalSort } from "@component";
 import { Color } from "@styles";
 import React, { Component } from 'react';
 import { Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View,Share } from 'react-native';
@@ -13,6 +13,7 @@ const RNFS = require('react-native-fs');
 import ViewShot from "react-native-view-shot";
 import { FloatingAction } from "react-native-floating-action";
 import {ItemApp} from "./element";
+import ReactNativeBlobUtil from 'react-native-blob-util'
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -53,7 +54,9 @@ class Home extends Component {
 
       valueInput : '',
       itemSelectors : [],
-      isSelecting : false
+      isSelecting : false,
+      openModalFilter : false,
+      filters : []
     };
     
   }
@@ -111,12 +114,28 @@ class Home extends Component {
       const pdf = await RNImageToPdf.createPDFbyImages(options);
       const filePath = await  helper.getPathImageIOS(pdf.filePath);
 
+      ReactNativeBlobUtil.fs.stat(pdf.filePath)
+      .then((stats) => {
+        this.addFilePdf({
+            ...pdf,
+            size : stats.size,
+            name:name,
+            checked : 0,
+            time : time.toString()
+        });
+      })
+      .catch((err) => {
         this.addFilePdf({
           ...pdf,
+          size : 20000,
           name:name,
           checked : 0,
           time : time.toString()
-        });
+      });
+      })
+
+
+
     } catch(e) {
     }
   }
@@ -208,80 +227,6 @@ class Home extends Component {
         isSelecting = {this.state.isSelecting}
       />
     )
-    return (
-      <View style = {{
-        width : "100%",
-        marginTop : index === 0 ? 20 : 0,
-        height : 60,
-        paddingHorizontal : 15,
-        flexDirection : 'row'
-      }}>
-          <Image style = {{
-            width : 40,
-            height : 50,
-          }}
-          source = {{uri : 'ic_pdfred'}}/>
-          <TouchableOpacity style = {{
-            flex : 1,
-            paddingLeft : 10,
-          }}
-          onPress = {() => {
-            this.setState({
-              visible : true,
-              uri : item.filePath
-            })
-          }}
-          >
-            <MyText text={item.name}
-                style={{
-                  color: '#1A1C19' 
-                }}
-                addSize = {2} 
-            />
-            <MyText text={helper.convert_month(parseInt(item.time))}
-                style={{
-                  color: '#7E8395',
-                  marginTop : 5,
-                }}
-                addSize = {-2}
-            />
-            <MyText text={item.filePath.slice(0,30)}
-                style={{
-                  marginTop : 3,
-                  color: '#7E8395',
-                }}
-                addSize = {-2}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style = {{
-            height : 40,
-            width : 40,
-            justifyContent : 'center',
-            alignItems : 'center'
-          }} onPress = {()=>{this.updateFeatureItem({
-            type : "CHECKED",
-            item : item
-          })}}>
-              <Image style = {{
-                width : 20,
-                height : 20,
-                tintColor: checked ? Color.PRIMARY :  '#7E8395',
-              }}
-              source = {{uri : 'ic_star'}}/>
-          </TouchableOpacity>
-          <TouchableOpacity style = {{
-            height : 40,
-            width : 40,
-            justifyContent : 'center',
-            alignItems : 'center'
-          }}
-          onPress = {()=>{
-            this.setState({ itemSelector : item })
-          }}>
-              <Ionicons name={'ellipsis-vertical-outline'} size={20} color={'#7E8395'} />
-          </TouchableOpacity>
-      </View>
-    )
   };
 
   confirmDelete = (selection) => {
@@ -355,6 +300,23 @@ class Home extends Component {
 
   }
 
+  sortFilterAction = (typeSort) => {
+    const exist = this.state.filters.findIndex((item)=> item === typeSort) ;
+    if(exist !== -1) return;
+    let fil = helper.cloneArray(this.state.filters);
+
+    if(typeSort === 'RECENT' || typeSort ===  'NAME' || typeSort === 'SIZE'){
+      fil = fil.filter((item) => item !== 'RECENT' && item !==  'NAME' && item !== 'SIZE');
+      fil.push(typeSort);
+    }else{
+      fil = fil.filter((item) => item !== 'ASCENDING' && item !==  'DESCENDING');
+      fil.push(typeSort);
+    }
+    this.setState({
+      filters : fil
+    });
+  }
+
   render() {
     return (
       <WrapperContainer nameTitle = {"Browser"} navigation = {this.props.navigation}>
@@ -371,6 +333,35 @@ class Home extends Component {
               }}
               renderItem={this._renderItem}
               numColumns = {2}
+              ListHeaderComponent = {()=>{
+                return(
+                  <TouchableOpacity style = {{
+                    height : 40,
+                    paddingHorizontal : 10,
+                    flexDirection : 'row',
+                    alignItems : 'center'
+                  }}
+                  onPress = {()=>{
+                    this.setState({
+                      openModalFilter : true
+                    })
+                  }}
+                  >
+                    <MyText text = {"Recent"} 
+                    style = {{
+                      color : "#FAB838",
+                      fontWeight : "bold"
+                    }}/>
+                    <Image style = {{
+                        width : 25,
+                        height : 25,
+                        marginLeft : 10,
+                      }}
+                      source = {{uri : 'ic_down'}}
+                    />
+                  </TouchableOpacity>
+                )
+              }}
               ListEmptyComponent = {()=>{
                 return(
                   <View style = {{
@@ -428,14 +419,24 @@ class Home extends Component {
         }}/>
 
         <ModalSelect 
-          updateFeatureItem = {this.updateFeatureItem} 
-          closeModal = {() => {
-            this.setState({
-              itemSelector : null
-            })
+        updateFeatureItem = {this.updateFeatureItem} 
+        closeModal = {() => {
+          this.setState({
+            itemSelector : null
+          })
         }}
         visible = {this.state.itemSelector !== null}
         item = {this.state.itemSelector}/>
+
+        <ModalSort 
+        updateFeatureItem = {this.sortFilterAction} 
+        closeModal = {() => {
+          this.setState({
+            openModalFilter : false
+          })
+        }}
+        visible = {this.state.openModalFilter}
+        filters = {this.state.filters}/>
         
         <ModalEdit 
           updateFeatureItem = {this.updateFeatureItem} 
@@ -458,7 +459,6 @@ class Home extends Component {
           visible = {this.state.itemDelete !== null}
           item = {this.state.itemDelete}
         />
-
         </View>
       </WrapperContainer>
     );
