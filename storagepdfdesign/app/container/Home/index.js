@@ -125,17 +125,14 @@ class Home extends Component {
         });
       })
       .catch((err) => {
-        this.addFilePdf({
-          ...pdf,
-          size : 20000,
-          name:name,
-          checked : 0,
-          time : time.toString()
-      });
+          this.addFilePdf({
+            ...pdf,
+            size : 20000,
+            name:name,
+            checked : 0,
+            time : time.toString()
+        });
       })
-
-
-
     } catch(e) {
     }
   }
@@ -199,7 +196,7 @@ class Home extends Component {
     if(exist === -1){
       newSelectors.push(item);
     }else {
-      newSelectors = this.state.itemSelectors.filter((it)=> it.time !== item.time)
+      newSelectors = this.state.itemSelectors.filter((it)=> it.time !== item.time);
     }
     this.setState({
         itemSelectors : newSelectors,
@@ -304,6 +301,7 @@ class Home extends Component {
     const exist = this.state.filters.findIndex((item)=> item === typeSort) ;
     if(exist !== -1) return;
     let fil = helper.cloneArray(this.state.filters);
+    let dataNew = helper.cloneArray(this.state.data);
 
     if(typeSort === 'RECENT' || typeSort ===  'NAME' || typeSort === 'SIZE'){
       fil = fil.filter((item) => item !== 'RECENT' && item !==  'NAME' && item !== 'SIZE');
@@ -312,8 +310,21 @@ class Home extends Component {
       fil = fil.filter((item) => item !== 'ASCENDING' && item !==  'DESCENDING');
       fil.push(typeSort);
     }
+
+    if(fil.includes("ASCENDING") || fil.includes("SIZE")){
+      dataNew = dataNew.sort((a,b) => a.size - b.size);
+    }
+    if(fil.includes("DESCENDING")){
+      dataNew = dataNew.sort((a,b) => b.size - a.size);
+    }
+
+    if(fil.includes("NAME")){
+      dataNew = dataNew.sort((a,b) => a.name - b.name);
+    }
+
     this.setState({
-      filters : fil
+      filters : fil,
+      data : dataNew
     });
   }
 

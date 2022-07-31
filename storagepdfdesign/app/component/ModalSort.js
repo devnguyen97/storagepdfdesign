@@ -92,17 +92,32 @@ export const ModalSort = ({visible,filters,updateFeatureItem,closeModal}) => {
                         borderTopColor : 'gray',
                         borderTopWidth : 0.3
                     }}>
-                        {ItemMenu('Recently Open',filters.includes(FEATURE_FILTER.RECENT),()=>{updateFeatureItem(FEATURE_FILTER.RECENT)})}
-                        {ItemMenu('Name',filters.includes(FEATURE_FILTER.NAME),()=>{updateFeatureItem(FEATURE_FILTER.NAME)})}
-                        {ItemMenu('Size',filters.includes(FEATURE_FILTER.SIZE),()=>{updateFeatureItem(FEATURE_FILTER.SIZE)})}
+                        {ItemMenu('Recently Open',filters.includes(FEATURE_FILTER.RECENT),()=>{
+                            updateFeatureItem(FEATURE_FILTER.RECENT);
+                            closeModal();
+                        })}
+                        {ItemMenu('Name',filters.includes(FEATURE_FILTER.NAME),()=>{
+                            updateFeatureItem(FEATURE_FILTER.NAME);
+                            closeModal();
+                        })}
+                        {ItemMenu('Size',filters.includes(FEATURE_FILTER.SIZE),()=>{
+                            updateFeatureItem(FEATURE_FILTER.SIZE);
+                            closeModal();
+                        })}
                     </View>
 
                     <View style = {{
                         borderTopColor : 'gray',
                         borderTopWidth : 0.3
                     }}>
-                        {ItemMenu('Ascending',filters.includes(FEATURE_FILTER.ASCENDING),()=>{updateFeatureItem(FEATURE_FILTER.ASCENDING)})}
-                        {ItemMenu('Descending',filters.includes(FEATURE_FILTER.DESCENDING),()=>{updateFeatureItem(FEATURE_FILTER.DESCENDING)})}
+                        {ItemMenu('Ascending',filters.includes(FEATURE_FILTER.ASCENDING),()=>{
+                            updateFeatureItem(FEATURE_FILTER.ASCENDING);
+                            closeModal();
+                        })}
+                        {ItemMenu('Descending',filters.includes(FEATURE_FILTER.DESCENDING),()=>{
+                            updateFeatureItem(FEATURE_FILTER.DESCENDING);
+                            closeModal();
+                        })}
                     </View>
 
                     <View style = {{

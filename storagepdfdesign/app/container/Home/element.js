@@ -14,12 +14,13 @@ import { helper, storage } from "@common";
 
 export const ItemApp = (props) => {
     const { item,index,checked,updateFeatureItem,pressSelector,
-        longPress,itemSelecting,isSelecting } = props ; 
+        longPress,itemSelecting,isSelecting } = props ;
     return(
         <TouchableOpacity style = {{
             flex : 0.5,
-            marginRight : index / 2 === 0 ? 10 :0,
-            marginLeft :  index / 2 !== 0 ? 10 :0,
+            marginTop : index > 1 ? 10 : 0, 
+            marginRight : index % 2 === 0 ? 10 :0,
+            // marginLeft :  index / 2 !== 0 ? 10 :0,
             borderColor : 'rgba(38, 37, 30, 0.2)',
             borderRadius : 6,
             borderWidth : 0.5
