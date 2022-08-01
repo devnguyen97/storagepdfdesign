@@ -8,6 +8,9 @@ import { ModalEdit } from "../component/ModalEdit";
 import { ModalImage } from "../component/ModalImage";
 import { ModalDelete } from "../component/ModalDelete";
 import {ModalSort} from "../component/ModalSort";
+import {ModalImagePicker} from "../component/ModalImagePicker";
+import {ModalCreatePdf} from "../component/ModalCreatePdf";
+
 export {
     MyText,
     BaseView,
@@ -18,6 +21,8 @@ export {
     ModalEdit,
     ModalImage,
     ModalDelete,
-    ModalSort
+    ModalSort,
+    ModalImagePicker,
+    ModalCreatePdf
 }
 

@@ -9,7 +9,7 @@ const feature = [
     'DELETE',
 ]
 
-export const ModalEdit = ({visible,item,updateFeatureItem,closeModal}) => {
+export const ModalEdit = ({visible,item,title,content,updateFeatureItem,closeModal}) => {
     if(!visible) return null;
     const [valueInput, setValueInput] = useState('');
     return (
@@ -35,7 +35,7 @@ export const ModalEdit = ({visible,item,updateFeatureItem,closeModal}) => {
                         marginTop : 50,
                         backgroundColor : 'white'
                     }}>
-                        <MyText text = {"Rename File"} 
+                        <MyText text = {`${title}`} 
                             addSize = {8} 
                         style = {{
                             marginTop : 20,
@@ -49,25 +49,21 @@ export const ModalEdit = ({visible,item,updateFeatureItem,closeModal}) => {
                             style={{
                                 width : "90%",
                                 height : 50,
-                                borderColor : '#413D4B',
+                                borderColor : '#F5A60F',
                                 borderWidth : 0.5,
-                                borderRadius : 10,
+                                borderWidth : 2,
+                                borderRadius : 8,
                                 paddingHorizontal : 10,
                             }}
                             placeholder={item.name}
                             placeholderTextColor={Color.grayColor153153153}
                         />
-                        <View style = {{
-                            height : 30,
-                            backgroundColor : 'white',
-                            position : 'absolute',
-                            left : 30,
-                            top : 45,
-                            justifyContent : 'center',
-                            alignItems : 'center'
-                        }}>
-                            <MyText text = {" Enter File Name "}/>
-                        </View>
+
+                        <MyText text = {`${content}`} addSize = {-3}
+                        style = {{
+                            color : '#76706A',
+                            marginTop : 5,
+                        }}/>
 
                         <View style = {{
                             flexDirection : 'row',
@@ -100,9 +96,9 @@ export const ModalEdit = ({visible,item,updateFeatureItem,closeModal}) => {
                                 marginLeft : 10,
                                 width : 69,
                                 height : 48,
-                                borderRadius : 112,
                                 marginTop : 20,
-                                backgroundColor : '#ADBFFE',
+                                borderRadius : 4, 
+                                backgroundColor : '#FAB838',
                                 justifyContent : 'center',
                                 alignItems : 'center'
                             }}
@@ -119,14 +115,12 @@ export const ModalEdit = ({visible,item,updateFeatureItem,closeModal}) => {
                             }}>
                                 <MyText text={'Save'}
                                     style={{
-                                    color: '#413D4B',
                                     }}
                                     addSize = {2}
                                 />
                             </TouchableOpacity>
 
-                        </View>
-
+                        </View> 
                     </View>
                 </ScrollView>
             </SafeAreaView>

@@ -321,7 +321,7 @@ PODS:
     - React-Core
   - react-native-network-info (5.2.1):
     - React
-  - react-native-pdf (6.5.0):
+  - react-native-pdf (6.6.2):
     - React-Core
   - react-native-progress-bar-android (1.0.4):
     - React
@@ -785,7 +785,7 @@ SPEC CHECKSUMS:
   react-native-multiple-image-picker: af1788309fa361fe7c910649d9e24097c34aac6f
   react-native-netinfo: 30fb89fa913c342be82a887b56e96be6d71201dd
   react-native-network-info: d1290ffc0bd0709e11436f5b8d7f605dcc5c4530
-  react-native-pdf: de35db0d8f1e5d37e65e887554f7d4bd062af56b
+  react-native-pdf: 33c622cbdf776a649929e8b9d1ce2d313347c4fa
   react-native-progress-bar-android: be43138ab7da30d51fc038bafa98e9ed594d0c40
   react-native-progress-view: 4d3bbe6a099ba027b1fedb1548c2c87f74249b70
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392

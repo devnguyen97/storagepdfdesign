@@ -5,7 +5,7 @@ import { MyText } from "@component";
 import Pdf from 'react-native-pdf';
 
 
-export const ModalViewPdf = ({uri,visible,closeFun}) => {
+export const ModalCreatePdf = ({uri,visible,closeFun}) => {
     if(!uri || uri.length === 0) return null;
     return (
         <Modal
@@ -104,9 +104,33 @@ export const ModalViewPdf = ({uri,visible,closeFun}) => {
                     <MyText style = {{
                         fontWeight : 'bold'
                     }}
-                    text = {'Close'}
+                    text = {'View File'}
                     />
                 </TouchableOpacity>
+                <TouchableOpacity style = {{
+                    width : "95%",
+                    height : 44,
+                    borderColor : '#FAB838',
+                    borderWidth : 0.5,
+                    borderRadius : 6,
+                    justifyContent : 'center',
+                    alignSelf : 'center',
+                    alignItems : 'center'
+                }}
+                onPress = {closeFun}>
+                    <MyText style = {{
+                        fontWeight : 'bold'
+                    }}
+                    text = {'Create new PDF'}
+                    />
+                </TouchableOpacity>
+
+                <MyText style = {{
+                        fontWeight : 'bold'
+                    }}
+                    text = {'Back to Homepage'}
+                />
+
             </SafeAreaView>
         </Modal>
     )

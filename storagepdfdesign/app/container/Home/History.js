@@ -9,6 +9,7 @@ import RNImageToPdf from 'react-native-image-to-pdf';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
+import { ItemApp } from "./element";
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -28,7 +29,20 @@ class History extends Component {
       itemDelete : null,
       visible : false,
       uri : '',
-      data : []
+      data : [],
+
+      valueInput : '',
+      itemSelectors : [],
+      isSelecting : false,
+      openModalFilter : false,
+      filters : [],
+      visibleMore : false,
+
+      visibleImages : false,
+      visibleCreate : true,
+      itemCreate : null,
+
+
     };
   }
 
@@ -38,6 +52,7 @@ class History extends Component {
       const file_pdfs = await storage.getItem("PDFS");
       if(file_pdfs){
         pdfs = JSON.parse(file_pdfs);
+        pdfs = pdfs.filter((item) => parseInt(item.checked) === 1);
         this.setState({
           data : pdfs
         })
@@ -130,72 +145,21 @@ class History extends Component {
 
   _renderItem = ({ item, index }) => {
     const checked = parseInt(item.checked) === 1;
+    const itemSelecting = this.state.itemSelectors.findIndex((it)=> it.time === item.time) !== -1
     return (
-      <View style = {{
-        width : "100%",
-        marginTop : index === 0 ? 20 : 0,
-        height : 60,
-        paddingHorizontal : 15,
-        flexDirection : 'row'
-      }}>
-          <Image style = {{
-            width : 40,
-            height : 50,
-          }}
-          source = {{uri : 'ic_pdfred'}}/>
-          <View style = {{
-            flex : 1,
-            paddingLeft : 10,
-          }}>
-            <MyText text={item.name}
-                style={{
-                  color: '#1A1C19' 
-                }}
-                addSize = {1}
-            />
-            <MyText text={helper.convert_month(parseInt(item.time))}
-                style={{
-                  color: '#7E8395',
-                  marginTop : 5,
-                }}
-                addSize = {-2}
-            />
-            <MyText text={item.filePath.slice(0,30)}
-                style={{
-                  marginTop : 3,
-                  color: '#7E8395',
-                }}
-                addSize = {-2}
-            />
-          </View>
-          <TouchableOpacity style = {{
-            height : 40,
-            width : 40,
-            justifyContent : 'center',
-            alignItems : 'center'
-          }} onPress = {()=>{this.updateFeatureItem({
-            type : "CHECKED",
-            item : item
-          })}}>
-              <Image style = {{
-                width : 20,
-                height : 20,
-                tintColor: checked ? Color.PRIMARY :  Color.blackColor,
-              }}
-              source = {{uri : 'ic_star'}}/>
-          </TouchableOpacity>
-          <TouchableOpacity style = {{
-            height : 40,
-            width : 40,
-            justifyContent : 'center',
-            alignItems : 'center'
-          }}
-          onPress = {()=>{
-            this.setState({ itemSelector : item })
-          }}>
-              <Ionicons name={'ellipsis-vertical-outline'} size={20} color={Color.blackColor} />
-          </TouchableOpacity>
-      </View>
+      <ItemApp
+        item = {item}
+        index = {index}
+        checked  = {checked}
+        updateFeatureItem = {()=>{}}
+        longPress = {this.longPressSelector}
+        pressSelector = {()=>{
+        }}
+        itemSelecting = {itemSelecting}
+        isSelecting = {this.state.isSelecting}
+        viewPDF = {()=>{
+        }}
+      />
     )
   };
 
@@ -265,14 +229,16 @@ class History extends Component {
 
   render() {
     return (
-      <WrapperContainer nameTitle = {"Page Manage Suite"} navigation = {this.props.navigation}>
+      <WrapperContainer nameTitle = {"Saved"} navigation = {this.props.navigation}>
         <View style = {{
           flex : 1,
-          backgroundColor : 'white'
+          backgroundColor : 'white',
+          padding : 10
         }}>
           <FlatList
               bounces={false}
               data={this.state.data}
+              numColumns = {2}
               style={{
                   flex: 1
               }}
@@ -280,8 +246,7 @@ class History extends Component {
               ListEmptyComponent = {()=>{
                 return(
                   <View style = {{
-                    flex : 1,
-                    height : Dimensions.get("window").height * 0.7,
+                    marginTop : 100,
                     justifyContent : 'center',
                     alignItems : 'center'
                   }}>
@@ -291,9 +256,11 @@ class History extends Component {
                       }}
                       resizeMode = {"contain"}
                       source = {{
-                        uri : 'ic_empty'
+                        uri : 'ic_filter'
                       }}/>
-                      
+                      <MyText text = {"Empty"} style = {{
+                        color : "#76706A"
+                      }}/>
                   </View>
                 )
               }}
@@ -320,9 +287,11 @@ class History extends Component {
 
         <ModalEdit 
         updateFeatureItem = {this.updateFeatureItem} 
+        title = {'Rename File'} 
+        content = {'You can only change file name, not file extension'}  
         closeModal = {() => {
           this.setState({
-            itemEdit : null
+            itemEdit : null 
           })
         }}
         visible = {this.state.itemEdit !== null}

@@ -34,6 +34,7 @@
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-blob-util": "^0.16.0",
+    "react-native-camera-roll-picker": "^2.0.0",
     "react-native-charts-wrapper": "^0.5.7",
     "react-native-circle-checkbox": "^0.1.6",
     "react-native-code-push": "^7.0.0",

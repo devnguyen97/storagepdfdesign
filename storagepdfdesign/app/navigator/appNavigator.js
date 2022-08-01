@@ -1,28 +1,21 @@
 import { MyText } from "@component";
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { LoginWebviewNew, MainHome, Start, Home, Starred, History, Splash } from "@screen";
+import { NavigationContainer } from '@react-navigation/native';
+import { History, Home, LoginWebviewNew, MainHome, Splash, Starred, Start } from "@screen";
 import { Color } from "@styles";
 import React, { Component } from 'react';
 import {
-    Dimensions,
-    Share,
-    SafeAreaView, StyleSheet,
-    TouchableOpacity,
-    Linking,
-    Image,
+    Dimensions, Image, Linking, SafeAreaView, StyleSheet,
+    TouchableOpacity
 } from 'react-native';
+import { View } from "react-native-animatable";
 import { enableScreens } from 'react-native-screens';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import WellCome from '../container/Wellcome';
-import InputCode from "../container/InputCode"
-import { View } from "react-native-animatable";
 import { connect } from 'react-redux';
+import InputCode from "../container/InputCode";
+import WellCome from '../container/Wellcome';
 
-import ReactNativeBlobUtil from 'react-native-blob-util'
 
 enableScreens();
 

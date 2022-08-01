@@ -14,7 +14,8 @@ import { helper, storage } from "@common";
 
 export const ItemApp = (props) => {
     const { item,index,checked,updateFeatureItem,pressSelector,
-        longPress,itemSelecting,isSelecting } = props ;
+        longPress,itemSelecting,isSelecting,viewPDF } = props ;
+
     return(
         <TouchableOpacity style = {{
             flex : 0.5,
@@ -26,6 +27,7 @@ export const ItemApp = (props) => {
             borderWidth : 0.5
         }}
         activeOpacity = {1}
+        onPress = {viewPDF}
         onLongPress = {longPress}>
             <View style = {{
                 width : "100%",

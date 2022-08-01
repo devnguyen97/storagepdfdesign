@@ -1,19 +1,16 @@
 import { helper, storage } from "@common";
-import { MyText, WrapperContainer,ModalViewPdf,ModalSelect,ModalEdit,ModalImage,ModalDelete,ModalSort } from "@component";
-import { Color } from "@styles";
-import React, { Component } from 'react';
-import { Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View,Share } from 'react-native';
-import { launchImageLibrary,launchCamera } from 'react-native-image-picker';
-import RNImageToPdf from 'react-native-image-to-pdf';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { connect } from 'react-redux';
-import ImgToBase64 from 'react-native-image-base64';
-const RNFS = require('react-native-fs');
-import ViewShot from "react-native-view-shot";
+import { ModalDelete, ModalEdit, ModalImage, ModalSelect, ModalSort,
+  ModalCreatePdf,
+  ModalViewPdf, MyText, WrapperContainer } from "@component";
+import { Dimensions, FlatList, Image, Share, StyleSheet, TouchableOpacity, View } from 'react-native';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 import { FloatingAction } from "react-native-floating-action";
-import {ItemApp} from "./element";
-import ReactNativeBlobUtil from 'react-native-blob-util'
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import RNImageToPdf from 'react-native-image-to-pdf';
+import { connect } from 'react-redux';
+import { ItemApp } from "./element";
+import React, { Component } from 'react';
+const RNFS = require('react-native-fs');
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -58,6 +55,10 @@ class Home extends Component {
       openModalFilter : false,
       filters : [],
       visibleMore : false,
+
+      visibleImages : false,
+      visibleCreate : true,
+      itemCreate : null,
     };
     
   }
@@ -98,9 +99,9 @@ class Home extends Component {
     this.initData()
   }
 
-  myAsyncPDFFunction = async (uri) => {
+  myAsyncPDFFunction = async (uri,name) => {
     const time = new Date().getTime();
-    const name = `image_pdf_${time}`;
+    // const name = `pdf_${helper.generateUUID(5)}`;
     try {
       const options = {
         imagePaths:[uri],
@@ -113,8 +114,6 @@ class Home extends Component {
         //for versions higher than 9 it is stored in (Download/img-to-pdf/)
       };
       const pdf = await RNImageToPdf.createPDFbyImages(options);
-      const filePath = await  helper.getPathImageIOS(pdf.filePath);
-
       ReactNativeBlobUtil.fs.stat(pdf.filePath)
       .then((stats) => {
         this.addFilePdf({
@@ -149,7 +148,13 @@ class Home extends Component {
           pdfs = [data];
         }
         await storage.setItem("PDFS",JSON.stringify(pdfs));
-        this.initData()
+        this.initData();
+        setTimeout(()=>{
+          this.setState({
+            visibleCreate : true,
+            itemCreate : pdfs
+          })
+        },2000)
       } catch (error) {
         
       }
@@ -195,9 +200,9 @@ class Home extends Component {
     const exist = newSelectors.findIndex((it)=> item.time === it.time);
 
     if(exist === -1){
-      newSelectors.push(item);
+      newSelectors = [item];
     }else {
-      newSelectors = this.state.itemSelectors.filter((it)=> it.time !== item.time);
+      newSelectors = []
     }
     this.setState({
         itemSelectors : newSelectors,
@@ -206,6 +211,12 @@ class Home extends Component {
   }
 
 
+  setViewPDF = (item) => {
+    this.setState({
+      visible : true,
+      uri : item.filePath
+    })
+  }
 
 
   _renderItem = ({ item, index }) => {
@@ -223,6 +234,9 @@ class Home extends Component {
         }}
         itemSelecting = {itemSelecting}
         isSelecting = {this.state.isSelecting}
+        viewPDF = {()=>{
+          this.setViewPDF(item)
+        }}
       />
     )
   };
@@ -238,7 +252,7 @@ class Home extends Component {
 
   updateFeatureItem = (selection) => {
     try {
-        const { item,type } = selection
+        const { item,type,name } = selection
         if(type === 'SHARE') {
           Share.share({
             title: "Share PDF",
@@ -248,7 +262,7 @@ class Home extends Component {
           });
         }
         if(type === 'SREENSHORT') {
-          this.myAsyncPDFFunction(item);
+          this.myAsyncPDFFunction(item,name);
         }
         if(type === 'DELETE') {
           this.setState({
@@ -259,7 +273,7 @@ class Home extends Component {
         if(type === 'CHECKED') {
           let newData = helper.cloneArray(this.state.data);
           item.forEach(element => {
-            const index = newData.findIndex((ele)=> ele.time === item.time);
+            const index = newData.findIndex((ele)=> ele.time === element.time);
             const status = parseInt(newData[index].checked);
             const newObj = {
               ...newData[index],
@@ -295,7 +309,7 @@ class Home extends Component {
         }
 
       }catch(error){
-
+        console.log("err", error);
       }
 
   }
@@ -333,6 +347,7 @@ class Home extends Component {
 
   renderMoreFeature = () => {
     if(this.state.itemSelectors.length === 0) return null;
+    const { itemSelectors } = this.state; 
     return(
       <View style = {{
         height : 60,
@@ -342,11 +357,17 @@ class Home extends Component {
         justifyContent : 'center',
         flexDirection : 'row'
       }}> 
-            <View style = {{
+            <TouchableOpacity style = {{
               justifyContent : 'center',
               alignItems : 'center',
               width : 70,
               height : 60,
+            }}
+            onPress = {()=>{
+              this.updateFeatureItem({
+                type : 'SHARE',
+                item : this.state.itemSelectors[0]
+              })
             }}>
               <Image style = {{
                   width : 25,
@@ -355,7 +376,7 @@ class Home extends Component {
                 source = {{uri : 'ic_clould'}}
               />
               <MyText text = {'Send'}/>
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity style = {{
               justifyContent : 'center',
               alignItems : 'center',
@@ -366,13 +387,12 @@ class Home extends Component {
                 type : 'CHECKED',
                 item : this.state.itemSelectors
             });
-            }}
-            >
+            }}>
               <Image style = {{
                   width : 25,
                   height : 25,
                 }}
-                source = {{uri : 'ic_tag'}}
+                source = {{uri : itemSelectors[0].checked ? 'bookmarked' : 'ic_tag'}}
               />
               <MyText text = {'Save'}/>
             </TouchableOpacity>
@@ -381,14 +401,20 @@ class Home extends Component {
               alignItems : 'center',
               width : 70,
               height : 60,
-            }}>
+            }}
+            onPress = {()=>{
+                this.setState({
+                    visibleMore : true
+                })
+            }}
+            >
               <Image style = {{
                   width : 25,
                   height : 25,
                 }}
                 source = {{uri : 'ic_more'}}
               />
-              <MyText text = {'Save'}/>
+              <MyText text = {'More'}/>
             </TouchableOpacity>  
 
       </View>
@@ -396,8 +422,9 @@ class Home extends Component {
   }
 
   render() {
+    console.log("3737373",this.state.visibleCreate);
     return (
-     [ <WrapperContainer nameTitle = {"Browser"} navigation = {this.props.navigation}>
+      [<WrapperContainer nameTitle = {"Browser"} navigation = {this.props.navigation}>
         <View style = {{
           flex : 1,
           backgroundColor : 'white',
@@ -443,8 +470,7 @@ class Home extends Component {
               ListEmptyComponent = {()=>{
                 return(
                   <View style = {{
-                    flex : 1,
-                    height : Dimensions.get("window").height * 0.7,
+                    marginTop : 100,
                     justifyContent : 'center',
                     alignItems : 'center'
                   }}>
@@ -454,9 +480,11 @@ class Home extends Component {
                       }}
                       resizeMode = {"contain"}
                       source = {{
-                        uri : 'ic_empty'
+                        uri : 'ic_filter'
                       }}/>
-                      
+                      <MyText text = {"Empty"} style = {{
+                        color : "#76706A"
+                      }}/>
                   </View>
                 )
               }}
@@ -485,9 +513,21 @@ class Home extends Component {
             })
         }}/>
 
+        <ModalCreatePdf  
+          uri = {this.state.uri} 
+          visible = {this.state.visibleCreate}
+          closeFun = {()=>{
+            this.setState({
+              visibleCreate : false,
+              itemCreate : null
+            })
+        }}
+        item = {this.state.itemCreate}/>
+
         
         <ModalImage
-          updateFeatureItem = {this.updateFeatureItem} 
+          updateFeatureItem = {this.updateFeatureItem}
+          addFilePdf = {this.addFilePdf}
           uri = {this.state.uriImage} 
           visible = {this.state.visibleImage}
           closeFun = {()=>{
@@ -501,11 +541,11 @@ class Home extends Component {
         updateFeatureItem = {this.updateFeatureItem} 
         closeModal = {() => {
           this.setState({
-            itemSelector : null 
+            visibleMore : false 
           })
         }}
         visible  = {this.state.visibleMore}
-        item = {this.state.itemSelector}/>
+        item = {this.state.itemSelectors[0]}/>
 
         <ModalSort 
         updateFeatureItem = {this.sortFilterAction} 
@@ -519,6 +559,8 @@ class Home extends Component {
         
         <ModalEdit 
           updateFeatureItem = {this.updateFeatureItem} 
+          title = {'Rename File'}
+          content = {'You can only change file name, not file extension'}  
           closeModal = {() => {
             this.setState({
               itemEdit : null
@@ -538,6 +580,7 @@ class Home extends Component {
           visible = {this.state.itemDelete !== null}
           item = {this.state.itemDelete}
         />
+
         </View>
         
         {this.renderMoreFeature()}

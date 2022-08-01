@@ -39,18 +39,17 @@ export const ModalDelete = ({visible,item,updateFeatureItem,closeModal}) => {
                         style = {{
                             marginTop : 20,
                             marginBottom : 20,
+                            fontWeight : 'bold'
                         }}/>
 
                         <MyText text = {"Do you sure want to permantly\ndelete this file? "} 
                             addSize = {2} 
                         style = {{
-                            color : '#413D4B'
                         }}/>
 
                         <MyText text = {"Warning: This action cannot redo."} 
-                            addSize = {2} 
                         style = {{
-                            color : '#413D4B',
+                            color : '#76706A',
                             marginTop : 20,
                         }}/>
 
@@ -76,7 +75,7 @@ export const ModalDelete = ({visible,item,updateFeatureItem,closeModal}) => {
                             }}>
                                 <MyText text={'Cancel'}
                                     style={{
-                                    color: '#413D4B',
+                                        fontWeight : 'bold'
                                     }}
                                     addSize = {2}
                                 />
@@ -85,11 +84,11 @@ export const ModalDelete = ({visible,item,updateFeatureItem,closeModal}) => {
                             <TouchableOpacity style = {{
                                 alignSelf : 'center',
                                 marginLeft : 10,
-                                width : 69,
+                                width : 79,
                                 height : 48,
-                                borderRadius : 112,
+                                borderRadius : 4,
                                 marginTop : 20,
-                                backgroundColor : '#F01313',
+                                backgroundColor : '#E7565E',
                                 justifyContent : 'center',
                                 alignItems : 'center'
                             }}
@@ -104,7 +103,8 @@ export const ModalDelete = ({visible,item,updateFeatureItem,closeModal}) => {
                             }}>
                                 <MyText text={'Delete'}
                                     style={{
-                                    color: 'white',
+                                        color: 'white',
+                                        fontWeight : 'bold'
                                     }}
                                     addSize = {2}
                                 />

@@ -10,7 +10,7 @@ class WrapperContainer extends Component {
     };
 
     render() {
-        const { nameTitle,navigation,valueInput,setValueInput } = this.props ;
+        const { nameTitle,navigation,valueInput,hideSearch,setValueInput } = this.props ;
         return (
             <BaseView style={{ flex: 1,backgroundColor : 'white'}}>
                 <ImageBackground style={{
@@ -55,6 +55,7 @@ class WrapperContainer extends Component {
                     </View>
 
                 </ImageBackground>
+                {!hideSearch &&
                 <View style={{
                         width : "95%",
                         height : 50,
@@ -83,6 +84,7 @@ class WrapperContainer extends Component {
                     placeholderTextColor={Color.grayColor153153153}
                 />
                 </View>
+                }
                 {
                     this.props.children
                 }
