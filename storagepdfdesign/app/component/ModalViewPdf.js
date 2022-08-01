@@ -7,6 +7,9 @@ import Pdf from 'react-native-pdf';
 
 export const ModalViewPdf = ({uri,visible,closeFun}) => {
     if(!uri || uri.length === 0) return null;
+    console.log('====================================');
+    console.log("696969",uri);
+    console.log('====================================');
     return (
         <Modal
             animationType="slide"

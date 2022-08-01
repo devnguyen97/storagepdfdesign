@@ -42,6 +42,8 @@ class History extends Component {
       visibleCreate : true,
       itemCreate : null,
 
+      valueInput: ''
+
 
     };
   }
@@ -227,9 +229,36 @@ class History extends Component {
 
   }
 
+  search = (text) => {
+    this.setState({
+      valueInput : text
+    })
+    if(text.trim().length === 0) {
+      return this.initData();
+    }
+    const txtSearch = helper.removeVietnameseTones(text).toUpperCase();
+    const newArr = helper.cloneArray(this.state.data);
+    let arr = null;
+    arr = newArr.filter((ele) => {
+          return (
+            helper
+              .removeVietnameseTones(ele.name)
+              .toUpperCase()
+              .search(txtSearch) !== -1
+          )
+    
+    });
+    this.setState({
+      data : arr
+    })
+  }
+
   render() {
     return (
-      <WrapperContainer nameTitle = {"Saved"} navigation = {this.props.navigation}>
+      <WrapperContainer nameTitle = {"Saved"}
+      setValueInput = {this.search}
+      valueInput = {this.state.valueInput}
+      navigation = {this.props.navigation}>
         <View style = {{
           flex : 1,
           backgroundColor : 'white',

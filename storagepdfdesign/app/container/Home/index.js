@@ -49,7 +49,6 @@ class Home extends Component {
       uri : '',
       data : [],
 
-      valueInput : '',
       itemSelectors : [],
       isSelecting : false,
       openModalFilter : false,
@@ -59,15 +58,12 @@ class Home extends Component {
       visibleImages : false,
       visibleCreate : true,
       itemCreate : null,
+
+      valueInput: ''
     };
     
   }
 
-  setValueInput = (valueInput) => {
-    this.setState({
-      valueInput
-    })
-  }
 
   initData = async () => {
     try {
@@ -421,10 +417,37 @@ class Home extends Component {
     )
   }
 
+  search = (text) => {
+    this.setState({
+      valueInput : text
+    })
+    if(text.trim().length === 0) {
+      return this.initData();
+    }
+    const txtSearch = helper.removeVietnameseTones(text).toUpperCase();
+    const newArr = helper.cloneArray(this.state.data);
+    let arr = null;
+    arr = newArr.filter((ele) => {
+          return (
+            helper
+              .removeVietnameseTones(ele.name)
+              .toUpperCase()
+              .search(txtSearch) !== -1
+          )
+    
+    });
+    this.setState({
+      data : arr
+    })
+  }
+
   render() {
-    console.log("3737373",this.state.visibleCreate);
     return (
-      [<WrapperContainer nameTitle = {"Browser"} navigation = {this.props.navigation}>
+      [<WrapperContainer 
+        nameTitle = {"Browser"} 
+        setValueInput = {this.search}
+        valueInput = {this.state.valueInput}
+        navigation = {this.props.navigation}>
         <View style = {{
           flex : 1,
           backgroundColor : 'white',

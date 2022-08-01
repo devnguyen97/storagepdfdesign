@@ -1,14 +1,7 @@
-import { helper, storage } from "@common";
-import { MyText, WrapperContainer,ModalViewPdf,ModalDelete,
-  ModalSelect,ModalEdit } from "@component";
-import { Color } from "@styles";
-import React, { Component } from 'react';
-import { Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View,Share } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
-import RNImageToPdf from 'react-native-image-to-pdf';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { MyText, WrapperContainer } from "@component";
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View,Linking} from 'react-native';
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -41,9 +34,24 @@ class Starred extends Component {
                   addSize={2} 
               />
               {ItemMenu('ic_share', 'Share', () => {
-
+                  // const link =
+                  // 'itms-apps://apps.apple.com/';
+                  // Linking.canOpenURL(link).then(
+                  //   (supported) => {
+                  //     supported && Linking.openURL(link);
+                  //   },
+                  //   (err) => console.log(err)
+                  // );
               })}
               {ItemMenu('ic_star', 'Rate us', () => {
+                  const link =
+                  'itms-apps://apps.apple.com/';
+                  Linking.canOpenURL(link).then(
+                    (supported) => {
+                      supported && Linking.openURL(link);
+                    },
+                    (err) => console.log(err)
+                  );
               })}
               {ItemMenu('ic_privacy', 'Privacy Policy', () => {
                   Linking.openURL('https://sites.google.com/view/pages-pdf-privacy-app/privacy');
