@@ -56,7 +56,8 @@ class Home extends Component {
       itemSelectors : [],
       isSelecting : false,
       openModalFilter : false,
-      filters : []
+      filters : [],
+      visibleMore : false,
     };
     
   }
@@ -257,13 +258,15 @@ class Home extends Component {
 
         if(type === 'CHECKED') {
           let newData = helper.cloneArray(this.state.data);
-          const index = newData.findIndex((ele)=> ele.time === item.time);
-          const status = parseInt(newData[index].checked);
-          const newObj = {
-            ...newData[index],
-            checked : status === 0 ? 1 : 0,
-          };
-          newData[index] = newObj;
+          item.forEach(element => {
+            const index = newData.findIndex((ele)=> ele.time === item.time);
+            const status = parseInt(newData[index].checked);
+            const newObj = {
+              ...newData[index],
+              checked : status === 0 ? 1 : 0,
+            };
+            newData[index] = newObj;
+          });
           this.setState({
             data : newData
           });
@@ -328,9 +331,73 @@ class Home extends Component {
     });
   }
 
+  renderMoreFeature = () => {
+    if(this.state.itemSelectors.length === 0) return null;
+    return(
+      <View style = {{
+        height : 60,
+        width : "100%",
+        borderTopColor : 'gray',
+        borderTopWidth : 0.2,
+        justifyContent : 'center',
+        flexDirection : 'row'
+      }}> 
+            <View style = {{
+              justifyContent : 'center',
+              alignItems : 'center',
+              width : 70,
+              height : 60,
+            }}>
+              <Image style = {{
+                  width : 25,
+                  height : 25,
+                }}
+                source = {{uri : 'ic_clould'}}
+              />
+              <MyText text = {'Send'}/>
+            </View>
+            <TouchableOpacity style = {{
+              justifyContent : 'center',
+              alignItems : 'center',
+              width : 70,
+              height : 60}}
+            onPress = {()=>{
+              this.updateFeatureItem({
+                type : 'CHECKED',
+                item : this.state.itemSelectors
+            });
+            }}
+            >
+              <Image style = {{
+                  width : 25,
+                  height : 25,
+                }}
+                source = {{uri : 'ic_tag'}}
+              />
+              <MyText text = {'Save'}/>
+            </TouchableOpacity>
+            <TouchableOpacity style = {{
+              justifyContent : 'center',
+              alignItems : 'center',
+              width : 70,
+              height : 60,
+            }}>
+              <Image style = {{
+                  width : 25,
+                  height : 25,
+                }}
+                source = {{uri : 'ic_more'}}
+              />
+              <MyText text = {'Save'}/>
+            </TouchableOpacity>  
+
+      </View>
+    )
+  }
+
   render() {
     return (
-      <WrapperContainer nameTitle = {"Browser"} navigation = {this.props.navigation}>
+     [ <WrapperContainer nameTitle = {"Browser"} navigation = {this.props.navigation}>
         <View style = {{
           flex : 1,
           backgroundColor : 'white',
@@ -399,13 +466,14 @@ class Home extends Component {
             backgroundColor : 'white'
         }}>
 
+        { this.state.itemSelectors.length === 0 && 
         <FloatingAction
             actions={actions}
             color = {'#1782FF'}
             onPressItem={name => {
               this.uploadImage(name)
             }}
-        />
+        />}
 
         <ModalViewPdf  
           uri = {this.state.uri} 
@@ -433,10 +501,10 @@ class Home extends Component {
         updateFeatureItem = {this.updateFeatureItem} 
         closeModal = {() => {
           this.setState({
-            itemSelector : null
+            itemSelector : null 
           })
         }}
-        visible = {this.state.itemSelector !== null}
+        visible  = {this.state.visibleMore}
         item = {this.state.itemSelector}/>
 
         <ModalSort 
@@ -471,7 +539,10 @@ class Home extends Component {
           item = {this.state.itemDelete}
         />
         </View>
+        
+        {this.renderMoreFeature()}
       </WrapperContainer>
+      ]
     );
   }
 }
