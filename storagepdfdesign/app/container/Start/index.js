@@ -2,7 +2,7 @@ import { MyText } from "@component";
 import AsyncStorage from '@react-native-community/async-storage';
 import React, { Component } from 'react';
 import {
-  Dimensions, ImageBackground, StatusBar, TouchableOpacity, View
+  Dimensions, ImageBackground, StatusBar, TouchableOpacity, View,Image,Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -72,6 +72,21 @@ class StartComponent extends Component {
     )
   }
 
+  createTwoButtonAlert = () =>
+    Alert.alert(
+      `"Pages Manager Suite" Wants to Use "facebook.com" to Sign In`,
+      "This allows the app and website to share information about you.",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Continue", onPress: () => {
+          this.onPress()
+        }}
+      ]
+  );
 
   render() {
     return (
@@ -104,8 +119,10 @@ class StartComponent extends Component {
                 color: Color.blackColor
               }}/>
           </View>
-          <TouchableOpacity style={{
+        </View>
+        <TouchableOpacity style={{
             marginTop: 20,
+            marginBottom : 20,
             flexDirection: 'row',
             width: "90%",
             borderRadius: 4,
@@ -115,26 +132,21 @@ class StartComponent extends Component {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-            onPress={this.onPress}>
-            <MyText text={helper.translate("Continue")} style={{
+            onPress={this.createTwoButtonAlert}>
+              <Image style = {{
+                  width : 25,
+                  height : 25
+              }}source = {{
+                uri : 'ic_fbfb'
+              }}/>
+            <MyText text={"Login with Facebook"} style={{
               color: "white",
+              fontWeight : "bold",
+              marginLeft : 10,
               fontSize: 16
             }} />
           </TouchableOpacity>
 
-          {/* <TouchableOpacity onPress={() => Linking.openURL('https://m.facebook.com/reg/?cid=103&refsrc=deprecated&soft=hjk')}>
-              <MyText text={helper.translate("Not_you")}
-                typeFont={"bold"}
-                style={{
-                  fontSize: 14,
-                  color : Color.grayColor,
-                  marginTop : 20,
-                  textAlign: 'center',
-                }} />
-            </TouchableOpacity> */}
-
-
-        </View>
 
         <View style={{
           justifyContent: 'space-between',

@@ -246,7 +246,7 @@ class SplashNavigator extends Component {
                 screenOptions={{
                     headerShown: false,
                 }}
-                initialRouteName="MainBottomTab">
+                initialRouteName="Splash">
                 <SplashStack.Screen name="Splash" component={Splash} />
                 <SplashStack.Screen name="MainFbNavigator" component={MainFbNavigator} />
                 <SplashStack.Screen
