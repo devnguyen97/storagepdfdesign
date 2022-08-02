@@ -169,10 +169,10 @@ class Home extends Component {
               maxSelectedAssets: 1,
               maximumMessageTitle: 'Error Select Image / Video',
           });
-            if(result.assets[0].uri){
+            if(result[0].realPath){
               this.setState({
                 visibleImage : true,
-                uriImage : result.assets[0].uri
+                uriImage : result[0].realPath
               })
           }
         }
