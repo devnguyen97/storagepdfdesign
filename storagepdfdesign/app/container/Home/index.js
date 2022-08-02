@@ -25,7 +25,7 @@ const actions = [
   {
     text: "",
     color : '#1782FF',
-    icon: require("../../media/plus.png"),
+    icon: require("../../media/gallery.png"),
     name: "plus",
     position: 2
   },
