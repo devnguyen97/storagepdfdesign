@@ -169,6 +169,9 @@ class Home extends Component {
               maxSelectedAssets: 1,
               maximumMessageTitle: 'Error Select Image / Video',
           });
+            console.log('====================================');
+            console.log("This is result");
+            console.log('====================================');
             if(result[0].realPath){
               this.setState({
                 visibleImage : true,
