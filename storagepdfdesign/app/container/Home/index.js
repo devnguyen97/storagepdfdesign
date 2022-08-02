@@ -172,10 +172,10 @@ class Home extends Component {
             console.log('====================================');
             console.log("This is result",result);
             console.log('====================================');
-            if(result[0].realPath){
+            if(result[0].path){
               this.setState({
                 visibleImage : true,
-                uriImage : result[0].realPath
+                uriImage : result[0].path
               })
           }
         }
