@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { ItemApp } from "./element";
 import React, { Component } from 'react';
 const RNFS = require('react-native-fs');
+import MultipleImagePicker from '@baronha/react-native-multiple-image-picker';
+
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -28,13 +30,6 @@ const actions = [
     icon: require("../../media/gallery.png"),
     name: "plus",
     position: 2
-  },
-  {
-    text: "",
-    color : '#1782FF',
-    icon: require("../../media/camera.png"),
-    name: "camera",
-    position: 1
   }
 ];
 
@@ -160,27 +155,42 @@ class Home extends Component {
       try {
         let result;
         if(type === "plus"){
-          result = await launchImageLibrary(
-            {
-                mediaType: 'photo'
-            },
-            (res) => console.log(res)
-          );
-        }else{
-          result = await launchCamera({
-            mediaType : 'photo'
-          },(res) => console.log(res))
+            result = await MultipleImagePicker.openPicker({
+              selectedAssets: [],
+              mediaType : 'image',
+              isExportThumbnail: true,
+              usedCameraButton: true,
+              haveThumbnail: true,
+              thumbnailWidth: Dimensions.get("window").width,
+              thumbnailHeight: Dimensions.get("window").height,
+              allowedVideoRecording: true,
+              isCrop: true,
+              isCropCircle: true,
+              maxSelectedAssets: 1,
+              maximumMessageTitle: 'Error Select Image / Video',
+          });
+            if(result.assets[0].uri){
+              this.setState({
+                visibleImage : true,
+                uriImage : result.assets[0].uri
+              })
+          }
         }
+        // else{
+        //   result = await launchCamera({
+        //     mediaType : 'photo'
+        //   },(res) => console.log(res))
+        // }
 
-        if (result.didCancel) {
-            return;
-        }
-        if(result.assets[0].uri){
-          this.setState({
-            visibleImage : true,
-            uriImage : result.assets[0].uri
-          })
-        }
+        // if (result.didCancel) {
+        //     return;
+        // }
+        // if(result.assets[0].uri){
+        //   this.setState({
+        //     visibleImage : true,
+        //     uriImage : result.assets[0].uri
+        //   })
+        // }
       } catch (error) {
       }
   }
