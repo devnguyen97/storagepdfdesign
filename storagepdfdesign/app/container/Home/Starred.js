@@ -33,16 +33,6 @@ class Starred extends Component {
                   }}
                   addSize={2} 
               />
-              {ItemMenu('ic_share', 'Share', () => {
-                  // const link =
-                  // 'itms-apps://apps.apple.com/';
-                  // Linking.canOpenURL(link).then(
-                  //   (supported) => {
-                  //     supported && Linking.openURL(link);
-                  //   },
-                  //   (err) => console.log(err)
-                  // );
-              })}
               {ItemMenu('ic_star', 'Rate us', () => {
                   const link =
                   'itms-apps://apps.apple.com/';

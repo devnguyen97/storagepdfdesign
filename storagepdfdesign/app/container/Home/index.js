@@ -53,6 +53,7 @@ class Home extends Component {
       visibleImages : false,
       visibleCreate : true,
       itemCreate : null,
+      itemView : null,
 
       valueInput: ''
     };
@@ -169,9 +170,6 @@ class Home extends Component {
               maxSelectedAssets: 1,
               maximumMessageTitle: 'Error Select Image / Video',
           });
-            console.log('====================================');
-            console.log("This is result",result);
-            console.log('====================================');
             if(result[0].path){
               this.setState({
                 visibleImage : true,
@@ -223,7 +221,8 @@ class Home extends Component {
   setViewPDF = (item) => {
     this.setState({
       visible : true,
-      uri : item.filePath
+      uri : item.filePath,
+      itemView : item
     })
   }
 
@@ -260,6 +259,7 @@ class Home extends Component {
   }
 
   updateFeatureItem = (selection) => {
+    console.log("selection",selection);
     try {
         const { item,type,name } = selection
         if(type === 'SHARE') {
@@ -540,7 +540,14 @@ class Home extends Component {
         />}
 
         <ModalViewPdf  
-          uri = {this.state.uri} 
+          uri = {this.state.uri}
+          visibleMore = {() => {
+            this.setState({
+              visibleMore : true
+            })
+          }}
+          updateFeatureItem = {this.updateFeatureItem}
+          item = {this.state.itemView}
           visible = {this.state.visible}
           closeFun = {()=>{
             this.setState({

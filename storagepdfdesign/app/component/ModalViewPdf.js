@@ -4,12 +4,84 @@ import React, { Component } from 'react';
 import { MyText } from "@component";
 import Pdf from 'react-native-pdf';
 
+const RenderMoreFeature = (props) => {
+    const {updateFeatureItem,item,closeFun,visibleMore} = props;
+    return(
+      <View style = {{
+        height : 60,
+        width : "100%",
+        borderTopColor : 'gray',
+        borderTopWidth : 0.2,
+        justifyContent : 'center',
+        flexDirection : 'row'
+      }}> 
+            <TouchableOpacity style = {{
+              justifyContent : 'center',
+              alignItems : 'center',
+              width : 70,
+              height : 60,
+            }}
+            onPress = {()=>{
+              updateFeatureItem({
+                type : 'SHARE',
+                item : item
+              })
+            }}>
+              <Image style = {{
+                  width : 25,
+                  height : 25,
+                }}
+                source = {{uri : 'ic_clould'}}
+              />
+              <MyText text = {'Send'}/>
+            </TouchableOpacity>
+            <TouchableOpacity style = {{
+              justifyContent : 'center',
+              alignItems : 'center',
+              width : 70,
+              height : 60}}
+            onPress = {()=>{
+              updateFeatureItem({
+                type : 'CHECKED',
+                item : [item]
+                });
+                closeFun();
+            }}>
+              <Image style = {{
+                  width : 25,
+                  height : 25,
+                }}
+                source = {{uri : item.checked ? 'bookmarked' : 'ic_tag'}}
+              />
+              <MyText text = {'Save'}/>
+            </TouchableOpacity>
+            <TouchableOpacity style = {{
+              justifyContent : 'center',
+              alignItems : 'center',
+              width : 70,
+              height : 60,
+            }}
+            onPress = {()=>{
+                closeFun();
+                setTimeout(()=>{
+                    visibleMore()
+                },500)
+            }}>
+              <Image style = {{
+                  width : 25,
+                  height : 25,
+                }}
+                source = {{uri : 'ic_more'}}
+              />
+              <MyText text = {'More'}/>
+            </TouchableOpacity>  
+      </View>
+    )
+  }
 
-export const ModalViewPdf = ({uri,visible,closeFun}) => {
+
+export const ModalViewPdf = ({uri,visible,item,updateFeatureItem,visibleMore,closeFun}) => {
     if(!uri || uri.length === 0) return null;
-    console.log('====================================');
-    console.log(uri);
-    console.log('====================================');
     return (
         <Modal
             animationType="slide"
@@ -60,8 +132,8 @@ export const ModalViewPdf = ({uri,visible,closeFun}) => {
                 }}>
                     <View
                         style={{
-                            width: '95%',
-                            height: '90%',
+                            width: '100%',
+                            height: '100%',
                             borderRadius: 10,
                             backgroundColor: Color.whiteColor
 
@@ -93,22 +165,11 @@ export const ModalViewPdf = ({uri,visible,closeFun}) => {
                     backgroundColor : 'gray',
                     marginBottom : 10,
                 }}/>
-                <TouchableOpacity style = {{
-                    width : "95%",
-                    height : 44,
-                    backgroundColor : '#FAB838',
-                    borderRadius : 6,
-                    justifyContent : 'center',
-                    alignSelf : 'center',
-                    alignItems : 'center'
-                }}
-                onPress = {closeFun}>
-                    <MyText style = {{
-                        fontWeight : 'bold'
-                    }}
-                    text = {'Close'}
-                    />
-                </TouchableOpacity>
+                <RenderMoreFeature 
+                updateFeatureItem = {updateFeatureItem} 
+                closeFun = {closeFun} 
+                visibleMore = {visibleMore} 
+                item = {item}/>
             </SafeAreaView>
         </Modal>
     )
