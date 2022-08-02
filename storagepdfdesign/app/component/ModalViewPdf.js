@@ -8,7 +8,7 @@ import Pdf from 'react-native-pdf';
 export const ModalViewPdf = ({uri,visible,closeFun}) => {
     if(!uri || uri.length === 0) return null;
     console.log('====================================');
-    console.log("696969",uri);
+    console.log(uri);
     console.log('====================================');
     return (
         <Modal
@@ -65,7 +65,6 @@ export const ModalViewPdf = ({uri,visible,closeFun}) => {
                             borderRadius: 10,
                             backgroundColor: Color.whiteColor
 
-                            // alignSelf: 'center'
                         }}>
                         <Pdf
                             source={{ uri : uri }}

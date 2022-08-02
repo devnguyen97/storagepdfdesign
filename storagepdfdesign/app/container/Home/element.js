@@ -13,7 +13,7 @@ import { helper, storage } from "@common";
 
 
 export const ItemApp = (props) => {
-    const { item,index,checked,updateFeatureItem,pressSelector,
+    const { item,index,checked,updateFeatureItem,pressSelector,actionCheck,
         longPress,itemSelecting,isSelecting,viewPDF } = props ;
 
     return(
@@ -76,7 +76,7 @@ export const ItemApp = (props) => {
             onPress={()=>{
                 updateFeatureItem({
                     type : "CHECKED",
-                    item : item,
+                    item : [item],
                 })
             }}>
                 <Image style = {{

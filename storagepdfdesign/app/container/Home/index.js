@@ -429,7 +429,7 @@ class Home extends Component {
     let arr = null;
     arr = newArr.filter((ele) => {
           return (
-            helper
+            ele.name && helper
               .removeVietnameseTones(ele.name)
               .toUpperCase()
               .search(txtSearch) !== -1

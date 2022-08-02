@@ -9,6 +9,7 @@ import ViewShot from "react-native-view-shot";
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import RNImageToPdf from 'react-native-image-to-pdf';
 import { width } from 'app/styles/mixins';
+import { helper } from "@common";
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -20,7 +21,6 @@ export const ModalImage = ({uri,visible,closeFun,addFilePdf,updateFeatureItem}) 
     const [name, setName] = useState(false);
 
     const [itemPDF, setItemPDF] = useState(null);
-
 
     const ref = useRef();
 
@@ -73,7 +73,6 @@ export const ModalImage = ({uri,visible,closeFun,addFilePdf,updateFeatureItem}) 
             })
           })
         } catch(e) {
-            console.log("373737373",e);
         }
     }
 
@@ -290,7 +289,9 @@ export const ModalImage = ({uri,visible,closeFun,addFilePdf,updateFeatureItem}) 
 
             <ModalEdit 
                 updateFeatureItem = {(item)=>{
-                    myAsyncPDFFunction(uri,item.item.name);
+                    ref.current.capture().then(uri1 => {
+                        myAsyncPDFFunction(uri1,item.item.name);
+                    });
                 }} 
                 title = {'Enter file name'}
                 content = {'Default file extension is .PDF'} 
