@@ -46,7 +46,7 @@ class OnboardingScreen extends Component {
         {
           key: 'Customized experience',
           title: 'Post updates, photos, videos straight from your phone',
-          text: 'Post updates, photos, videos straight from your phone',
+          text: '',
           image: require('../../media/img_onboarding_4.png'),
           backgroundColor: '#59b2ab',
         },
