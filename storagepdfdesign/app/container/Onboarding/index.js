@@ -167,9 +167,10 @@ class OnboardingScreen extends Component {
             renderDoneButton={this._renderDoneButton}
             onDone={() => {
               this.props.navigation.navigate('MainBottomTab');
-              activeDotStyle = {backgroundColor: 'rgba(242, 154, 22, 0.24)'}
-            //   dotStyle = {{backgroundColor: 'rgba(242, 154, 22, 0.24)'}}
             }}
+                          dotStyle = {{backgroundColor: 'rgba(242, 154, 22, 0.24)'}}
+            activeDotStyle={{ backgroundColor: 'rgba(250, 184, 56, 1)' }}
+
           />
           <View
             style={{
