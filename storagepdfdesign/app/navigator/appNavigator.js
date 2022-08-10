@@ -15,6 +15,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import { connect } from 'react-redux';
 import InputCode from "../container/InputCode";
 import WellCome from '../container/Wellcome';
+import OnboardingScreen from '../container/Onboarding'
 
 
 enableScreens();
@@ -248,6 +249,8 @@ class SplashNavigator extends Component {
                 }}
                 initialRouteName="Splash">
                 <SplashStack.Screen name="Splash" component={Splash} />
+                <SplashStack.Screen name="OnboardingScreen" component={OnboardingScreen} />
+
                 <SplashStack.Screen name="MainFbNavigator" component={MainFbNavigator} />
                 <SplashStack.Screen
                         name="MainBottomTab"
