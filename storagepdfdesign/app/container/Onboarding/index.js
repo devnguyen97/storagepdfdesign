@@ -11,7 +11,7 @@ import {
   Text,
   StyleSheet,
   ImageBackground,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import {connect} from 'react-redux';
 import AppIntroSlider from 'react-native-app-intro-slider';
@@ -24,21 +24,24 @@ class OnboardingScreen extends Component {
       pages: [
         {
           key: 'one',
-          title: 'Stay in touch with your customer through comments & messages.',
+          title:
+            'Stay in touch with your customer through comments & messages.',
           text: '',
           image: require('../../media/img_onboarding_1.png'),
           backgroundColor: '#59b2ab',
         },
         {
           key: '',
-          title: 'Track how your business is doing with Pages and Brand Insights',
+          title:
+            'Track how your business is doing with Pages and Brand Insights',
           text: '',
           image: require('../../media/img_onboarding_2.png'),
           backgroundColor: '#59b2ab',
         },
         {
           key: 'Customized experience',
-          title: 'Stay focused with all of your Page notifications in one place',
+          title:
+            'Stay focused with all of your Page notifications in one place',
           text: '',
           image: require('../../media/img_onboarding_3.png'),
           backgroundColor: '#59b2ab',
@@ -78,6 +81,15 @@ class OnboardingScreen extends Component {
             addSize={8}
             style={{fontWeight: 'bold', color: 'black', marginTop: 15}}
           />
+          <View
+            style={{
+              borderBottomWidth: 1,
+              position: 'relative',
+              borderBottomColor: 'rgba(0, 0, 0, 0.16)',
+              width: ' 90%',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}></View>
         </View>
       </View>
     );
@@ -153,10 +165,14 @@ class OnboardingScreen extends Component {
           flex: 1,
           backgroundColor: 'rgba(252, 246, 236, 1)',
         }}>
-    <ImageBackground
+        <ImageBackground
           source={require('../../media/img_background.png')}
-          resizeMode ='contain'
-          style={{ height: DEVICE_HEIGHT, width: DEVICE_WIDTH, paddingBottom: 100}}>
+          resizeMode="contain"
+          style={{
+            height: DEVICE_HEIGHT,
+            width: DEVICE_WIDTH,
+            paddingBottom: 50,
+          }}>
           <AppIntroSlider
             renderItem={this._renderItem}
             data={this.state.pages}
@@ -168,21 +184,9 @@ class OnboardingScreen extends Component {
             onDone={() => {
               this.props.navigation.navigate('MainBottomTab');
             }}
-                          dotStyle = {{backgroundColor: 'rgba(242, 154, 22, 0.24)'}}
-            activeDotStyle={{ backgroundColor: 'rgba(250, 184, 56, 1)' }}
-
+            dotStyle={{backgroundColor: 'rgba(242, 154, 22, 0.24)'}}
+            activeDotStyle={{backgroundColor: 'rgba(250, 184, 56, 1)'}}
           />
-          <View
-            style={{
-              borderBottomWidth: 1,
-              position: 'relative',
-              bottom: 150,
-              borderBottomColor: 'rgba(0, 0, 0, 0.16)',
-              width: ' 90%',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}></View>
-                
         </ImageBackground>
       </View>
     );
