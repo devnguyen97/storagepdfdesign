@@ -741,7 +741,7 @@ SPEC CHECKSUMS:
   CodePush: ef496b6fd053012e985e3d4a0ab9f9dbf2739eac
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: bdb6cad1c2dfd3bff6e608f3bb32c97b98fe2580
+  FBReactNativeSpec: 29c38f3a0043ec6dd6155de6031fb1761034baea
   Flipper: 1bd2db48dcc31e4b167b9a33ec1df01c2ded4893
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -828,4 +828,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 388fd11eae8cf4985d1a6ef04cdc20ee30cdfd1b
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

@@ -36,7 +36,7 @@ class Splash extends Component {
         //   return ;
         // };
         //55555 MainFbNavigator
-        this.props.navigation.navigate("MainBottomTab")
+        this.props.navigation.navigate("OnboardingScreen")
     } catch (error) {
       this.checkIP()
       console.log('error :>> ', error);
